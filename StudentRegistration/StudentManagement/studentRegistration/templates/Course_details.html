@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
+    <style>
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-around;
+            padding: 2em;
+            text-align: center;
+        }
+
+        section {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        h1 {
+            margin-bottom: 1em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2em;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 2em;
+        }
+
+        .btn:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url "home" %}">Students Details</a></li>
+            <li><a href="{% url "course" %}">course Details</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Python</h2>
+            <p>Python is used for server-side web development, software development, mathematics, and system scripting, and is popular for Rapid Application Development and as a scripting or glue language to tie existing components because of its high-level, built-in data structures, dynamic typing, and dynamic binding.</p>
+            <h3>Enrolled Students</h3>
+
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Enrollment Date</th>
+                </tr>
+                {% for student in students %}
+                    {% if student.course == "python" %}
+                        <tr>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.email }}</td>
+                            <td>{{ student.enrollment_date }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </section>
+
+        <section>
+            <h2>PHP</h2>
+            <p>PHP is a general-purpose scripting language geared towards web development. It was originally created by Danish-Canadian programmer Rasmus Lerdorf in 1993 and released in 1995. The PHP reference implementation is now produced by the PHP Group.</p>
+            <h3>Enrolled Students</h3>
+
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Enrollment Date</th>
+                </tr>
+                {% for student in students %}
+                    {% if student.course == "php" %}
+                        <tr>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.email }}</td>
+                            <td>{{ student.enrollment_date }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </section>
+    </main>
+
+    <div style="text-align: center;">
+        <button class="btn" onclick="window.location.href='{% url 'register' %}'">Add New Student</button>
+    </div>
+</body>
+</html>

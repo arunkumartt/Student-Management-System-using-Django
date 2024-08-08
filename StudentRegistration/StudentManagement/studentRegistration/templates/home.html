@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <title>Home Page</title>
+        <style>
+            nav {
+                background-color: #333;
+                color: #fff;
+                padding: 1em;
+                text-align: center;
+            }
+
+            nav ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            nav li {
+                display: inline-block;
+                margin-right: 20px;
+            }
+
+            nav a {
+                color: #fff;
+                text-decoration: none;
+            }
+
+            main {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 2em;
+            }
+
+            .btn {
+                background-color: #4CAF50;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .btn:hover {
+                background-color: #3e8e41;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="{% url "home" %}">Students Details</a></li>
+                <li><a href="{% url "course" %}">course Details</a></li>
+            </ul>
+        </nav>
+        <h1>Student Details</h1>
+        <div>
+            <table style="border-collapse: collapse; border-spacing: 0; width: 100%; border: 1px solid #ddd;">
+                <thead>
+                <tr style="background-color: #f0f0f0;">
+                    <th style="border: 1px solid #ddd; padding: 10px;">Name</th>
+                    <th style="border: 1px solid #ddd; padding: 10px;">Email</th>
+                    <th style="border: 1px solid #ddd; padding: 10px;">Number</th>
+                    <th style="border: 1px solid #ddd; padding: 10px;">Age</th>
+                    <th style="border: 1px solid #ddd; padding: 10px;">Enrollment Date</th>
+                    <th style="border: 1px solid #ddd; padding: 10px;">Course</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for student in students %}
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="border: 1px solid #ddd; padding: 10px;">{{ student.name }}</td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">{{ student.email }}</td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">{{ student.number }}</td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">{{ student.age }}</td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">{{ student.enrollment_date }}</td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">{{ student.course }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align: Right;">
+            <button class="btn" onclick="window.location.href='{% url 'register' %}'">Add New Student</button>
+        </div>
+    </body>
+</html>
